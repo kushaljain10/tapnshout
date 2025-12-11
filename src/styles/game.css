@@ -1,0 +1,68 @@
+:root {
+  --blue-1: #0ea5e9;
+  --blue-2: #38bdf8;
+  --red-1: #ef4444;
+  --red-2: #f97316;
+  --bg-dark: #0f172a;
+  --line: #ffffffaa;
+  --ball: #ffffff;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; background: var(--bg-dark); color: #fff; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.game-container {
+  flex: 1;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.half.top { background: linear-gradient(180deg, var(--blue-2), var(--blue-1)); }
+.half.bottom { background: linear-gradient(0deg, var(--red-2), var(--red-1)); }
+
+.center-line {
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 2px;
+  background: var(--line);
+  box-shadow: 0 0 8px #ffffff66;
+}
+
+.tap-layer { position: absolute; inset: 0; display: grid; grid-template-rows: 1fr 1fr; z-index: 10; }
+.tap-zone { cursor: pointer; }
+.tap-zone:active { filter: brightness(1.05); }
+
+.svg-stage { position: absolute; inset: 0; z-index: 5; }
+
+.ball {
+  filter: drop-shadow(0 4px 8px #0005);
+}
+
+.trail-circle { pointer-events: none; }
+
+.victory-overlay {
+  position: absolute; inset: 0; display: grid; place-items: center; background: #00000080; z-index: 20;
+}
+.victory-card {
+  background: #111827ee; border: 1px solid #ffffff22; border-radius: 16px; padding: 20px 24px; text-align: center;
+}
+.victory-title { margin: 0 0 12px 0; font-size: 1.5rem; }
+.restart-btn { background: #fff; color: #111827; border: none; border-radius: 999px; padding: 10px 18px; font-weight: 600; cursor: pointer; }
+.restart-btn:hover { background: #e5e7eb; }
+
+/* Mobile-first sizing */
+@media (min-width: 768px) {
+  .victory-card { padding: 28px 32px; }
+  .victory-title { font-size: 1.75rem; }
+}
